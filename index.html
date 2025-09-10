@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <script src="script.js" defer></script>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <header>
+    <div class="header">
         <h1>Library</h1>
-    </header>
-    <div class="sidebar">
+        <button id="newbookbutton">+ New Book</button>
+    </div>
+    <dialog class="sidebar">
         <form action="#">
             <legend>New Book Entry</legend>
             <fieldset>
@@ -30,7 +32,7 @@
                     <button type="submit" id="addbookbutton">Add Book</button>
             </fieldset>
         </form>
-    </div>
+    </dialog>
     <div id="container">
 
     </div>

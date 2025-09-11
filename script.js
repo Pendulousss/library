@@ -32,6 +32,10 @@ class Book {
     }
 }
 
+myLibrary.push(new Book("Dune","Frank Herbert","500","Unread"));
+myLibrary.push(new Book('Three Body Problem','Cixin Liu','400','Read'));
+myLibrary.push(new Book('Project Hail Mary','Andy Weir','268','Read'));
+
 function addBookToMyLib(){
     container.innerHTML = "";
     myLibrary.forEach(book => {
@@ -42,7 +46,9 @@ function addBookToMyLib(){
         newbook.style.border = "3px solid aquamarine";
         newbook.style.borderRadius = "10%";
         newbook.style.padding = "16px";
+        newbook.style.width = '200px'
         newbook.style.boxShadow = "2px 2px 4px black";
+        newbook.style.backgroundColor = "rgb(119, 164, 211)"
         newbook.setAttribute('data-book-id', book.id);
         container.appendChild(newbook);
 
@@ -69,10 +75,10 @@ function addBookToMyLib(){
             bstatus.style.width = "60px"
             bstatus.textContent = book.status;
             bstatus.addEventListener('click', () => {
-                if (book.status === 'read') {
+                if (book.status === 'Read') {
                     book.status = 'unread';
                 } else {
-                    book.status = 'read';
+                    book.status = 'Read';
                 }
                 bstatus.textContent = book.status;
             });
@@ -107,3 +113,5 @@ function removebook(bookId) {
         addBookToMyLib();
     }
 }
+
+addBookToMyLib();

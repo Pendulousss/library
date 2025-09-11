@@ -35,6 +35,7 @@ class Book {
 myLibrary.push(new Book("Dune","Frank Herbert","500","Unread"));
 myLibrary.push(new Book('Three Body Problem','Cixin Liu','400','Read'));
 myLibrary.push(new Book('Project Hail Mary','Andy Weir','268','Read'));
+myLibrary.push(new Book('The left Hand of Darkness','Ursula K. LeGuin','350','Unread'));
 
 function addBookToMyLib(){
     container.innerHTML = "";
@@ -44,9 +45,9 @@ function addBookToMyLib(){
         const newbook = document.createElement("div");
         newbook.classList = "book";
         newbook.style.border = "3px solid aquamarine";
-        newbook.style.borderRadius = "10%";
         newbook.style.padding = "16px";
-        newbook.style.width = '200px'
+        newbook.style.width = '300px'
+        newbook.style.height = "200px"
         newbook.style.boxShadow = "2px 2px 4px black";
         newbook.style.backgroundColor = "rgb(119, 164, 211)"
         newbook.setAttribute('data-book-id', book.id);
@@ -76,7 +77,7 @@ function addBookToMyLib(){
             bstatus.textContent = book.status;
             bstatus.addEventListener('click', () => {
                 if (book.status === 'Read') {
-                    book.status = 'unread';
+                    book.status = 'Unread';
                 } else {
                     book.status = 'Read';
                 }

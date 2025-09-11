@@ -33,7 +33,7 @@ class Book {
 }
 
 function addBookToMyLib(){
-    container.innerHTML = '';
+    container.innerHTML = "";
     myLibrary.forEach(book => {
         
    

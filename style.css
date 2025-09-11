@@ -1,4 +1,5 @@
 body {
+    overflow-x: hidden  ;
     padding: 0;
     margin: 0;
 }
@@ -22,9 +23,48 @@ body {
     justify-content: space-between;
     align-items: center;
     button {
-        width: 100px;
-        height: 25px;
-        border-radius: 10%;
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
         margin-right: 48px;
+        box-shadow: 6px 6px 12px gray;
+        position: fixed;
+        top: 90vh;
+        left: 94vw;
+        font-size: x-large;
+        color: white;
+        background-color: blue;
     }
+}
+
+dialog {
+    border-radius: 4%;
+    box-shadow: 4px 4px 8px grey;
+    form {
+    legend {text-align: center};
+    fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 400px;
+    width: 300px;
+    button {
+        width: 100px;
+        align-self: center;
+        background-color: blue;
+        color: white;
+        padding: 8px;
+        box-shadow: 1px 1px 4px gray;
+        border-radius: 8%;
+    }
+    p {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    label, input {
+        font-size: large;
+}
+}
+}
+}
 }

@@ -40,6 +40,7 @@ body {
         border: none;
         top: 88vh;
         left: 94vw;
+        cursor: pointer;
         font-size: 40px;
         color: var(var(--text-color));
         background-color: var(--theme-color);

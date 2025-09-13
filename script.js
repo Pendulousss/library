@@ -44,7 +44,6 @@ function addBookToMyLib(){
    
         const newbook = document.createElement("div");
         newbook.classList = "book";
-        // newbook.style.border = "1px solid gray";
         newbook.style.padding = "8px";
         newbook.style.width = '300px'
         newbook.style.height = "200px"
@@ -67,7 +66,6 @@ function addBookToMyLib(){
             bremove.style.alignSelf = "end";
             bremove.style.boxShadow = '0 0 8px gray'
             bremove.style.cursor = 'pointer';
-            bremove.style.backgroundColor = 'aliceblue'
             bremove.addEventListener('click', () => {
                 removebook(book.id);
             });

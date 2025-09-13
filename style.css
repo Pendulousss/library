@@ -4,6 +4,12 @@
     --text-color: black;
 }
 
+[data-theme="dark"] {
+    --theme-color: #1a1a1a;
+    --shadow-color: #333;
+    --text-color: white;
+}
+
 body {
     overflow-x: hidden  ;
     padding: 0;
@@ -23,14 +29,14 @@ body {
 .header {
     background-color: var(--theme-color);
     box-shadow: 0 0 8px 2px var(--shadow-color);
-    color: var(var(--text-color));
+    color: var(--text-color);
     font-size: large;
     margin: 0;
     padding: 0 16px;
     display: flex;
     justify-content: center;
     align-items: center;
-    button {
+    #newbookbutton {
         height: 50px;
         width: 50px;
         border-radius: 100%;
@@ -42,7 +48,7 @@ body {
         left: 94vw;
         cursor: pointer;
         font-size: 40px;
-        color: var(var(--text-color));
+        color: var(--text-color);
         background-color: var(--theme-color);
         &:focus {
             box-shadow: 0 0 14px var(--shadow-color);
@@ -55,13 +61,13 @@ dialog {
     border: none;
     box-shadow: 0 0  16px var(--shadow-color);
     background-color: var(--theme-color);
-    color: black;
+    color: var(--text-color);
     form {
         border: none;
-    legend {text-align: center;color: var(var(--text-color));}
+    legend {text-align: center;color: var(--text-color);}
     fieldset {
         background-color: var(--theme-color);
-        color: var(var(--text-color));
+        color: var(--text-color);
         display: flex;
         border: none;
         flex-direction: column;
@@ -73,9 +79,9 @@ dialog {
             align-self: center;
             background-color: var(--theme-color);
             border-radius: 32px;
-            color: var(var(--text-color));
+            color: var(--text-color);
             padding: 8px;
-            border: none    ;
+            border: none;
             box-shadow: 0 0 8px var(--shadow-color);
         }
         p {
@@ -96,4 +102,25 @@ dialog {
 }
 }
 
-
+#darkModeToggle {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    position: relative;
+    left: 40vw;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    background-color: var(--theme-color);
+    color: var(--text-color);
+    box-shadow: 0 0 8px var(--shadow-color);
+    margin-right: 16px;
+    svg {
+        height: 24px;
+        width: 24px;
+    }
+    &:focus {
+        cursor: pointer;
+        box-shadow: 0 0 12px var(--shadow-color);
+    }
+}

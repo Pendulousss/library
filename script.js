@@ -3,10 +3,21 @@ let author = document.querySelector("#author");
 let pages = document.querySelector("#pages");
 let readstatus = document.querySelector("#status");
 const newbookbutton = document.querySelector("#newbookbutton");
+const darkModeToggle = document.querySelector("#darkModeToggle");
 const sidebar = document.querySelector(".sidebar");
 const container = document.querySelector("#container");
 const form = document.querySelector("form");
 const myLibrary = [];
+
+darkModeToggle.addEventListener('click', () => {
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        darkModeToggle.querySelector("svg").style.filter = 'invert(0)';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        darkModeToggle.querySelector("svg").style.filter = 'invert(1)';
+    }
+});
 
 newbookbutton.addEventListener('click', () => {
     sidebar.showModal();
@@ -51,7 +62,8 @@ function addBookToMyLib(){
         newbook.style.borderRadius = '16px';
         newbook.style.display = "flex";
         newbook.style.flexDirection = 'column';
-        newbook.style.backgroundColor = "aliceblue";
+        newbook.style.backgroundColor = 'var(--theme-color)';
+        newbook.style.color = 'var(--text-color)';
         newbook.setAttribute('data-book-id', book.id);
         container.appendChild(newbook);
 
@@ -66,6 +78,8 @@ function addBookToMyLib(){
             bremove.style.alignSelf = "end";
             bremove.style.boxShadow = '0 0 8px gray'
             bremove.style.cursor = 'pointer';
+            bremove.style.backgroundColor = 'var(--theme-color)';
+            bremove.style.color = 'var(--text-color)';
             bremove.addEventListener('click', () => {
                 removebook(book.id);
             });
@@ -76,18 +90,24 @@ function addBookToMyLib(){
             bname.textContent = `Name: ${book.name}`;
             bname.style.padding = '0';
             bname.style.margin = '8px';
+            bname.style.color = 'var(--text-color)';
+            bname.style.fontWeight = '700';
             newbook.appendChild(bname);
             let bauthor = document.createElement("p");
             bauthor.classList = "author";
             bauthor.textContent =`Author: ${book.author}`;
             bauthor.style.margin = '8px';
             bauthor.style.padding = '0';
+            bauthor.style.color = 'var(--text-color)';
+            bauthor.style.fontWeight = '700';
             newbook.appendChild(bauthor)
             let bpages = document.createElement("p");
             bpages.classList = "pages";
             bpages.textContent = `Page count: ${book.pages}`;
             bpages.style.margin = '8px';
             bpages.style.padding = '0';
+            bpages.style.color = 'var(--text-color)';
+            bpages.style.fontWeight = '700';
             newbook.appendChild(bpages)
 
             let nbbuttons = document.createElement("div");
@@ -104,25 +124,26 @@ function addBookToMyLib(){
             bstatus.style.width = "65px"
             bstatus.style.borderRadius = "24px";
             bstatus.textContent = book.status;
-            bstatus.style.backgroundColor = 'aliceblue';
-            bstatus.style.boxShadow = '0 0 8px gray'
+            bstatus.style.backgroundColor = 'var(--theme-color)';
+            bstatus.style.color = 'var(--text-color)';
+            bstatus.style.boxShadow = '0 0 8px var(--shadow-color)';
             bstatus.style.cursor = 'pointer';
             bstatus.addEventListener('click', () => {
                 if (book.status === 'Read' || bstatus.style.backgroundColor === 'green') {
                     book.status = 'Unread';
-                    bstatus.style.backgroundColor = 'aliceblue';
-                    bstatus.style.color = 'black';
-
+                    bstatus.style.backgroundColor = 'var(--theme-color)';
+                    bstatus.style.color = 'var(--text-color)';
                 } else if (book.status === 'Read' || book.status === 'Unread'){
                     book.status = 'Reading';
                     bstatus.style.backgroundColor = 'gray';
-                    bstatus.style.color = 'white';
+                    bstatus.style.color = 'var(--text-color)';
                 } else {
                     book.status = 'Read';
-                    bstatus.style.backgroundColor = 'black';
-                    bstatus.style.color = 'white';
+                    bstatus.style.backgroundColor = 'var(--text-color)';
+                    bstatus.style.color = 'var(--theme-color)';
+                    
 
-                } 
+                }
                 bstatus.textContent = book.status;
             });
             nbbuttons.appendChild(bstatus);

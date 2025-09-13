@@ -45,9 +45,6 @@ body {
 }
 
 dialog {
-    position: fixed;
-    left: 164vh;
-    height: 100%;
     border-radius: 2%;
     box-shadow: 4px 4px 8px grey;
     background-color: rgb(5, 5, 63);
@@ -80,4 +77,12 @@ dialog {
 }
 }
 }
+}
+
+fieldset > .name, .author, .pages {
+    padding: 8px;
+}
+
+.bremove {
+    box-shadow: 2px 2px 6px 2px gray;
 }

@@ -45,56 +45,88 @@ function addBookToMyLib(){
         const newbook = document.createElement("div");
         newbook.classList = "book";
         newbook.style.border = "3px solid aquamarine";
-        newbook.style.padding = "16px";
+        newbook.style.padding = "8px";
         newbook.style.width = '300px'
         newbook.style.height = "200px"
         newbook.style.boxShadow = "2px 2px 4px black";
+        newbook.style.display = "flex";
+        newbook.style.flexDirection = 'column';
+        newbook.style.justifyContent = 'center';
         newbook.style.backgroundColor = "rgb(119, 164, 211)"
         newbook.setAttribute('data-book-id', book.id);
         container.appendChild(newbook);
 
 
+            let bremove = document.createElement("button");
+            bremove.classList = "removebutton";
+            bremove.type = "button";
+            bremove.textContent = "X";
+            bremove.style.backgroundColor = 'red';
+            bremove.style.fontWeight = '900';
+            bremove.style.borderRadius = '100%';
+            bremove.style.alignSelf = "end";
+            bremove.style.boxShadow = '2px 2px 6px black'
+            bremove.style.cursor = 'pointer';
+            bremove.addEventListener('click', () => {
+                removebook(book.id);
+            });
+            newbook.appendChild(bremove);
+
             let bname = document.createElement("p");
             bname.classList = "name";
             bname.textContent = `Name: ${book.name}`;
+            bname.style.padding = '0';
+            bname.style.margin = '8px';
             newbook.appendChild(bname);
             let bauthor = document.createElement("p");
             bauthor.classList = "author";
             bauthor.textContent =`Author: ${book.author}`;
+            bauthor.style.margin = '8px';
+            bauthor.style.padding = '0';
             newbook.appendChild(bauthor)
             let bpages = document.createElement("p");
             bpages.classList = "pages";
             bpages.textContent = `Page count: ${book.pages}`;
+            bpages.style.margin = '8px';
+            bpages.style.padding = '0';
             newbook.appendChild(bpages)
 
+            let nbbuttons = document.createElement("div");
+            nbbuttons.style.display = "flex";
+            nbbuttons.style.justifyContent = "flex-end";
+            newbook.appendChild(nbbuttons);
 
             let bstatus = document.createElement("button");
             bstatus.classList = "status";
             bstatus.type = "button";
             bstatus.style.padding = "8px";
-            bstatus.style.marginRight = "16px";
-            bstatus.style.width = "60px"
+            bstatus.style.margin = "16px";
+            bstatus.style.width = "65px"
+            bstatus.style.borderRadius = "24px";
             bstatus.textContent = book.status;
+            bstatus.style.backgroundColor = 'yellow';
+            bstatus.style.boxShadow = '3px 3px 8px black'
+            bstatus.style.cursor = 'pointer';
             bstatus.addEventListener('click', () => {
-                if (book.status === 'Read') {
+                if (book.status === 'Read' || bstatus.style.backgroundColor === 'green') {
                     book.status = 'Unread';
+                    bstatus.style.backgroundColor = 'orange';
+                    bstatus.style.color = 'black';
+
+                } else if (book.status === 'Read' || book.status === 'Unread'){
+                    book.status = 'Reading';
+                    bstatus.style.backgroundColor = 'blue';
+                    bstatus.style.color = 'white';
                 } else {
                     book.status = 'Read';
-                }
+                    bstatus.style.backgroundColor = 'green';
+                    bstatus.style.color = 'white';
+
+                } 
                 bstatus.textContent = book.status;
             });
-            newbook.appendChild(bstatus);
+            nbbuttons.appendChild(bstatus);
 
-
-            let bremove = document.createElement("button");
-            bremove.classList = "removebutton";
-            bremove.type = "button";
-            bremove.textContent = "Remove";
-            bremove.style.padding = "8px";
-            bremove.addEventListener('click', () => {
-                removebook(book.id);
-            });
-            newbook.appendChild(bremove);
     });
 }
 

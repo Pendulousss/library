@@ -44,15 +44,15 @@ function addBookToMyLib(){
    
         const newbook = document.createElement("div");
         newbook.classList = "book";
-        newbook.style.border = "3px solid aquamarine";
+        // newbook.style.border = "1px solid gray";
         newbook.style.padding = "8px";
         newbook.style.width = '300px'
         newbook.style.height = "200px"
-        newbook.style.boxShadow = "2px 2px 4px black";
+        newbook.style.boxShadow = "0 0 8px gray";
+        newbook.style.borderRadius = '16px';
         newbook.style.display = "flex";
         newbook.style.flexDirection = 'column';
-        newbook.style.justifyContent = 'center';
-        newbook.style.backgroundColor = "rgb(119, 164, 211)"
+        newbook.style.backgroundColor = "aliceblue";
         newbook.setAttribute('data-book-id', book.id);
         container.appendChild(newbook);
 
@@ -61,12 +61,13 @@ function addBookToMyLib(){
             bremove.classList = "removebutton";
             bremove.type = "button";
             bremove.textContent = "X";
-            bremove.style.backgroundColor = 'red';
             bremove.style.fontWeight = '900';
             bremove.style.borderRadius = '100%';
+            bremove.style.border = 'none';
             bremove.style.alignSelf = "end";
-            bremove.style.boxShadow = '2px 2px 6px black'
+            bremove.style.boxShadow = '0 0 8px gray'
             bremove.style.cursor = 'pointer';
+            bremove.style.backgroundColor = 'aliceblue'
             bremove.addEventListener('click', () => {
                 removebook(book.id);
             });
@@ -99,27 +100,28 @@ function addBookToMyLib(){
             let bstatus = document.createElement("button");
             bstatus.classList = "status";
             bstatus.type = "button";
+            bstatus.style.border = 'none';
             bstatus.style.padding = "8px";
             bstatus.style.margin = "16px";
             bstatus.style.width = "65px"
             bstatus.style.borderRadius = "24px";
             bstatus.textContent = book.status;
-            bstatus.style.backgroundColor = 'yellow';
-            bstatus.style.boxShadow = '3px 3px 8px black'
+            bstatus.style.backgroundColor = 'aliceblue';
+            bstatus.style.boxShadow = '0 0 8px gray'
             bstatus.style.cursor = 'pointer';
             bstatus.addEventListener('click', () => {
                 if (book.status === 'Read' || bstatus.style.backgroundColor === 'green') {
                     book.status = 'Unread';
-                    bstatus.style.backgroundColor = 'orange';
+                    bstatus.style.backgroundColor = 'aliceblue';
                     bstatus.style.color = 'black';
 
                 } else if (book.status === 'Read' || book.status === 'Unread'){
                     book.status = 'Reading';
-                    bstatus.style.backgroundColor = 'blue';
+                    bstatus.style.backgroundColor = 'gray';
                     bstatus.style.color = 'white';
                 } else {
                     book.status = 'Read';
-                    bstatus.style.backgroundColor = 'green';
+                    bstatus.style.backgroundColor = 'black';
                     bstatus.style.color = 'white';
 
                 } 

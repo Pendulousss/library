@@ -49,7 +49,7 @@ class Book {
 myLibrary.push(new Book("Dune","Frank Herbert","500","Unread"));
 myLibrary.push(new Book('Three Body Problem','Cixin Liu','400','Read'));
 myLibrary.push(new Book('Project Hail Mary','Andy Weir','268','Read'));
-myLibrary.push(new Book('The left Hand of Darkness','Ursula K. LeGuin','350','Unread'));
+myLibrary.push(new Book('The left Hand of Darkness','Ursula K. LeGuin','350','Reading'));
 
 function addBookToMyLib(){
     container.innerHTML = "";
@@ -83,8 +83,8 @@ function addBookToMyLib(){
             bremove.style.boxShadow = '0 0 8px var(--shadow-color)'
             bremove.style.cursor = 'pointer';
             bremove.style.backgroundColor = 'var(--theme-color)';
-            bremove.style.color = 'var(--text-color)';
-            bremove.style.padding = '8px 12px';
+            bremove.style.color = 'var(--remove-color)';
+            bremove.style.padding = 'var(--x-padding)';
             bremove.addEventListener('click', () => {
                 removebook(book.id);
             });
@@ -130,20 +130,22 @@ function addBookToMyLib(){
             bstatus.style.borderRadius = "24px";
             bstatus.textContent = book.status;
             bstatus.style.backgroundColor = 'var(--theme-color)';
-            bstatus.style.color = 'var(--text-color)';
+            if (book.status === 'Read'){bstatus.style.color = 'var(--positive-color)';}
+            else if (book.status === 'Reading'){bstatus.style.color = 'var(--blue)';}
+            else if (book.status === 'Unread'){bstatus.style.color = 'var(--yellow)';}
             bstatus.style.boxShadow = '0 0 8px var(--shadow-color)';
             bstatus.style.cursor = 'pointer';
             bstatus.style.fontWeight = '700';
             bstatus.addEventListener('click', () => {
-                if (book.status === 'Read' || bstatus.style.backgroundColor === 'green') {
+                if (book.status === 'Read' || bstatus.style.backgroundColor === 'var(--positive-color)') {
                     book.status = 'Unread';
-                    bstatus.style.color = 'var(--text-color)';
+                    bstatus.style.color = 'var(--yellow)';
                 } else if (book.status === 'Read' || book.status === 'Unread'){
                     book.status = 'Reading';
-                    bstatus.style.color = 'blue';
+                    bstatus.style.color = 'var(--blue)';
                 } else {
                     book.status = 'Read';
-                    bstatus.style.color = 'green';
+                    bstatus.style.color = 'var(--positive-color)';
                     
 
                 }

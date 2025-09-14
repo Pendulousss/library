@@ -1,12 +1,12 @@
 :root {
     --theme-color: aliceblue;
-    --shadow-color: gray;
+    --shadow-color: rgba(0,0,0,0.1);
     --text-color: black;
 }
 
 [data-theme="dark"] {
     --theme-color: #1a1a1a;
-    --shadow-color: #333;
+    --shadow-color: rgba(137, 137, 137, 0.1);
     --text-color: white;
 }
 
@@ -23,7 +23,7 @@ body {
     width: 100vw;
     height: 100vh;
     padding: 32px;
-    gap: 16px;
+    gap: 36px;
 }
 
 .header {
@@ -41,7 +41,7 @@ body {
         width: 50px;
         border-radius: 100%;
         margin-right: 48px;
-        box-shadow: 0 0 12px var(--shadow-color);
+        box-shadow: 0 0 12px var(--shadow-color) ;
         position: fixed;
         border: none;
         top: 88vh;
@@ -50,9 +50,13 @@ body {
         font-size: 40px;
         color: var(--text-color);
         background-color: var(--theme-color);
+        transition: all 0.3s ease-out;
         &:focus {
-            box-shadow: 0 0 14px var(--shadow-color);
+            box-shadow: 0 0 14px var(--shadow-color);            
         }
+        &:active {
+        transform: scale(0.8);
+    }
     }
 }
 
@@ -74,7 +78,7 @@ dialog {
         justify-content: space-evenly;
         height: 500px;
         width: 300px;
-        button {
+        #addbookbutton {
             width: 100px;
             align-self: center;
             background-color: var(--theme-color);
@@ -83,6 +87,21 @@ dialog {
             padding: 8px;
             border: none;
             box-shadow: 0 0 8px var(--shadow-color);
+            font-weight: 700;
+            cursor: pointer;
+        }
+        #modalclose {
+            align-self: flex-end;
+            background-color: var(--theme-color);
+            border-radius: 100%;
+            color: var(--text-color);
+            border: none;
+            position: relative;
+            cursor: pointer;
+            left: 2ch;
+            bottom: 4.5vh;
+            box-shadow: 0 0 8px var(--shadow-color);
+            font-weight: 900;
         }
         p {
             display: flex;
@@ -115,6 +134,7 @@ dialog {
     color: var(--text-color);
     box-shadow: 0 0 8px var(--shadow-color);
     margin-right: 16px;
+    transition: all 0.5s ease-in-out;
     svg {
         height: 24px;
         width: 24px;
@@ -122,5 +142,8 @@ dialog {
     &:focus {
         cursor: pointer;
         box-shadow: 0 0 12px var(--shadow-color);
+    }
+    &:active {
+        transform: scale(0.8);
     }
 }

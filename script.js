@@ -4,10 +4,13 @@ let pages = document.querySelector("#pages");
 let readstatus = document.querySelector("#status");
 const newbookbutton = document.querySelector("#newbookbutton");
 const darkModeToggle = document.querySelector("#darkModeToggle");
+const closedialog = document.querySelector("#modalclose");
 const sidebar = document.querySelector(".sidebar");
 const container = document.querySelector("#container");
 const form = document.querySelector("form");
 const myLibrary = [];
+
+closedialog.addEventListener('click', () => {sidebar.close();});
 
 darkModeToggle.addEventListener('click', () => {
     if (document.documentElement.getAttribute('data-theme') === 'dark') {
@@ -58,12 +61,13 @@ function addBookToMyLib(){
         newbook.style.padding = "8px";
         newbook.style.width = '300px'
         newbook.style.height = "200px"
-        newbook.style.boxShadow = "0 0 8px gray";
+        newbook.style.boxShadow = "0 0 12px 4px var(--shadow-color)";
         newbook.style.borderRadius = '16px';
         newbook.style.display = "flex";
         newbook.style.flexDirection = 'column';
         newbook.style.backgroundColor = 'var(--theme-color)';
         newbook.style.color = 'var(--text-color)';
+        newbook.style.transition = 'all 0.2s ease-out';
         newbook.setAttribute('data-book-id', book.id);
         container.appendChild(newbook);
 
@@ -76,10 +80,11 @@ function addBookToMyLib(){
             bremove.style.borderRadius = '100%';
             bremove.style.border = 'none';
             bremove.style.alignSelf = "end";
-            bremove.style.boxShadow = '0 0 8px gray'
+            bremove.style.boxShadow = '0 0 8px var(--shadow-color)'
             bremove.style.cursor = 'pointer';
             bremove.style.backgroundColor = 'var(--theme-color)';
             bremove.style.color = 'var(--text-color)';
+            bremove.style.padding = '8px 12px';
             bremove.addEventListener('click', () => {
                 removebook(book.id);
             });
@@ -119,28 +124,26 @@ function addBookToMyLib(){
             bstatus.classList = "status";
             bstatus.type = "button";
             bstatus.style.border = 'none';
-            bstatus.style.padding = "8px";
+            bstatus.style.padding = "12px";
             bstatus.style.margin = "16px";
-            bstatus.style.width = "65px"
+            bstatus.style.width = "100px"
             bstatus.style.borderRadius = "24px";
             bstatus.textContent = book.status;
             bstatus.style.backgroundColor = 'var(--theme-color)';
             bstatus.style.color = 'var(--text-color)';
             bstatus.style.boxShadow = '0 0 8px var(--shadow-color)';
             bstatus.style.cursor = 'pointer';
+            bstatus.style.fontWeight = '700';
             bstatus.addEventListener('click', () => {
                 if (book.status === 'Read' || bstatus.style.backgroundColor === 'green') {
                     book.status = 'Unread';
-                    bstatus.style.backgroundColor = 'var(--theme-color)';
                     bstatus.style.color = 'var(--text-color)';
                 } else if (book.status === 'Read' || book.status === 'Unread'){
                     book.status = 'Reading';
-                    bstatus.style.backgroundColor = 'gray';
-                    bstatus.style.color = 'var(--text-color)';
+                    bstatus.style.color = 'blue';
                 } else {
                     book.status = 'Read';
-                    bstatus.style.backgroundColor = 'var(--text-color)';
-                    bstatus.style.color = 'var(--theme-color)';
+                    bstatus.style.color = 'green';
                     
 
                 }

@@ -8,11 +8,13 @@
     --blue: rgb(12, 6, 100);
     --yellow: rgb(221, 145, 3);
     --x-padding: 8px 12px;
-    --box-shadow: 6px 6px 12px var(--shadow-color),
-        -2px -2px 4px var(--shine-color);
-    --focus-bxsh: 3px 3px 6px var(--shadow-color),
-        -1px -1px 2px var(--shine-color);
-    --card-shadow: inset 6px 6px 12px var(--shadow-color), inset -2px -2px 4px var(--shine-color);
+    --box-shadow: -6px 6px 12px var(--shadow-color),
+        -2px 2px 4px var(--shine-color);
+    --focus-bxsh: -3px 3px 6px var(--shadow-color),
+        -1px 1px 2px var(--shine-color);
+    --card-shadow: -6px 6px 12px var(--shadow-color), inset -2px 2px 4px 4px var(--shine-color);
+    --plus-shadow: 0 8px 12px var(--shadow-color), 0 2px 2px var(--shine-color);
+    --plus-focus: 0 4px 6px var(--shadow-color), 0 1px 1px var(--shine-color);
 }
 
 [data-theme="dark"] {
@@ -23,11 +25,10 @@
     --positive-color: rgb(36, 119, 0);
     --blue: rgb(60, 0, 255);
     --yellow: rgb(134, 91, 13);
-    --box-shadow: 6px 6px 12px var(--shadow-color),
-        -2px -2px 4px var(--shine-color);
-    --focus-bxsh: 3px 3px 6px var(--shadow-color),
-        -1px -1px 2px var(--shine-color);
-    --card-shadow: inset 6px 6px 12px var(--shadow-color), inset -2px -2px 4px var(--shine-color);
+   --box-shadow: -6px 6px 12px var(--shadow-color),
+        -2px 2px 4px var(--shine-color);
+    --focus-bxsh: -3px 3px 6px var(--shadow-color),
+        -1px 1px 2px var(--shine-color);
 }
 
 body {
@@ -63,8 +64,7 @@ body {
         width: 50px;
         border-radius: 100%;
         margin-right: 48px;
-        box-shadow: 6px 6px 12px var(--shadow-color),
-            -2px -2px 4px var(--shine-color);
+        box-shadow: var(--plus-shadow);
         position: fixed;
         border: none;
         top: 88vh;
@@ -79,10 +79,8 @@ body {
             border: none;
         }
 
-        ;
-
         &:focus {
-            box-shadow: 0 0 14px var(--shadow-color);
+            box-shadow: var(--plus-focus);
             border: none;
         }
 
@@ -205,7 +203,8 @@ dialog {
     font-size: 24px;
     background-color: var(--theme-color);
     color: var(--text-color);
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 0 14px var(--shadow-color),
+        0 0 6px var(--shine-color);
     margin-right: 16px;
     transition: all 0.3s ease-in-out;
 
@@ -216,11 +215,12 @@ dialog {
 
     &:focus {
         cursor: pointer;
-        box-shadow: var(--focus-bxsh);
     }
 
     &:active {
         transform: scale(0.8);
+        box-shadow: 0 0 10px var(--shadow-color),
+            0 0 6px var(--shine-color);
     }
 }
 
@@ -228,13 +228,16 @@ dialog {
     padding: 8px;
     width: 300px;
     height: 200px;
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--box-shadow);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     background-color: var(--theme-color);
     color: var(--text-color);
     transition: all 0.2s ease-out;
+    &:hover {
+        box-shadow: var(--focus-bxsh);
+    }
 }
 
 .removebutton {

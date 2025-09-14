@@ -1,27 +1,37 @@
 :root {
     --theme-color: aliceblue;
-    --shadow-color: rgba(0,0,0,0.1);
+    --shadow-color: gray;
     --text-color: black;
-    --remove-color:  rgba(244, 42, 42, 0.7);
+    --shine-color: white;
+    --remove-color: rgba(244, 42, 42, 0.7);
     --positive-color: rgba(1, 120, 1, 0.984);
     --blue: rgb(12, 6, 100);
     --yellow: rgb(221, 145, 3);
     --x-padding: 8px 12px;
+    --box-shadow: 6px 6px 12px var(--shadow-color),
+        -2px -2px 4px var(--shine-color);
+    --focus-bxsh: 3px 3px 6px var(--shadow-color),
+        -1px -1px 2px var(--shine-color);
+    --card-shadow: inset 6px 6px 12px var(--shadow-color), inset -2px -2px 4px var(--shine-color);
 }
 
 [data-theme="dark"] {
     --theme-color: #1a1a1a;
-    --shadow-color: rgba(137, 137, 137, 0.1);
+    --shadow-color: black;
     --text-color: white;
-    --remove-color:  rgb(184, 0, 0);
+    --remove-color: rgb(184, 0, 0);
     --positive-color: rgb(36, 119, 0);
     --blue: rgb(60, 0, 255);
     --yellow: rgb(134, 91, 13);
-
+    --box-shadow: 6px 6px 12px var(--shadow-color),
+        -2px -2px 4px var(--shine-color);
+    --focus-bxsh: 3px 3px 6px var(--shadow-color),
+        -1px -1px 2px var(--shine-color);
+    --card-shadow: inset 6px 6px 12px var(--shadow-color), inset -2px -2px 4px var(--shine-color);
 }
 
 body {
-    overflow-x: hidden  ;
+    overflow-x: hidden;
     padding: 0;
     margin: 0;
     background-color: var(--theme-color);
@@ -38,7 +48,7 @@ body {
 
 .header {
     background-color: var(--theme-color);
-    box-shadow: 0 0 8px 2px var(--shadow-color);
+    box-shadow: var(--box-shadow);
     color: var(--text-color);
     font-size: large;
     margin: 0;
@@ -46,12 +56,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
     #newbookbutton {
+        border: none;
         height: 50px;
         width: 50px;
         border-radius: 100%;
         margin-right: 48px;
-        box-shadow: 0 0 12px var(--shadow-color) ;
+        box-shadow: 6px 6px 12px var(--shadow-color),
+            -2px -2px 4px var(--shine-color);
         position: fixed;
         border: none;
         top: 88vh;
@@ -61,78 +74,124 @@ body {
         color: var(--positive-color);
         background-color: var(--theme-color);
         transition: all 0.3s ease-out;
-        &:focus {
-            box-shadow: 0 0 14px var(--shadow-color);            
+
+        &:hover {
+            border: none;
         }
+
+        ;
+
+        &:focus {
+            box-shadow: 0 0 14px var(--shadow-color);
+            border: none;
+        }
+
         &:active {
-        transform: scale(0.8);
-    }
+            transform: scale(0.8);
+            border: none;
+        }
     }
 }
 
 dialog {
     border-radius: 2%;
     border: none;
-    box-shadow: 0 0  16px var(--shadow-color);
+    box-shadow: var(--box-shadow);
     background-color: var(--theme-color);
     color: var(--text-color);
+
     form {
         border: none;
-    legend {text-align: center;color: var(--text-color);}
-    fieldset {
-        background-color: var(--theme-color);
-        color: var(--text-color);
-        display: flex;
-        border: none;
-        flex-direction: column;
-        justify-content: space-evenly;
-        height: 500px;
-        width: 300px;
-        #addbookbutton {
-            width: 100px;
-            align-self: center;
-            background-color: var(--theme-color);
-            border-radius: 32px;
-            color: var(--positive-color);
-            padding: 12px;
-            border: none;
-            box-shadow: 0 0 8px var(--shadow-color);
-            font-weight: 700;
-            cursor: pointer;
+
+        legend {
+            text-align: center;
+            color: var(--text-color);
+            font-size: x-large;
         }
-        #modalclose {
-            align-self: flex-end;
+
+        fieldset {
             background-color: var(--theme-color);
-            border-radius: 100%;
-            color: var(--remove-color);
-            border: none;
-            position: relative;
-            cursor: pointer;
-            left: 2ch;
-            bottom: 4.5vh;
-            box-shadow: 0 0 8px var(--shadow-color);
-            font-weight: 900;
-            padding: var(--x-padding);
-        }
-        p {
+            color: var(--text-color);
             display: flex;
+            border: none;
             flex-direction: column;
-            gap: 8px;
-        label {
-            font-size: large;
+            justify-content: space-evenly;
+            height: auto;
+            width: 300px;
+
+            #addbookbutton {
+                width: 100px;
+                align-self: center;
+                background-color: var(--theme-color);
+                border-radius: 32px;
+                color: var(--positive-color);
+                padding: 12px;
+                border: none;
+                box-shadow: var(--box-shadow);
+                font-weight: 700;
+                cursor: pointer;
+
+                &:active {
+                    box-shadow: var(--focus-bxsh);
+                }
+            }
+
+            #modalclose {
+                align-self: flex-end;
+                background-color: var(--theme-color);
+                border-radius: 100%;
+                color: var(--remove-color);
+                border: none;
+                position: relative;
+                cursor: pointer;
+                left: 2ch;
+                bottom: 4.5vh;
+                box-shadow: var(--box-shadow);
+                font-weight: 900;
+                padding: var(--x-padding);
+
+                &:hover {
+                    background-color: var(--remove-color);
+                    color: var(--text-color);
+                }
+
+                &:active {
+                    box-shadow: var(--focus-bxsh);
+                    transform: scale(0.9);
+                }
+            }
+
+            p {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                label {
+                    font-size: large;
+                }
+
+                input {
+                    border: none;
+                    padding: 1rem;
+                    border-radius: 1rem;
+                    background: var(--theme-color);
+                    box-shadow: var(--focus-bxsh);
+                    color: var(--text-color);
+                    transition: 0.3s;
+                }
+
+                input:focus {
+                    outline: none;
+                    transition: 0.3s;
+                    box-shadow: var(--box-shadow);
+                }
+
+                #status {
+                    color: var(--text-color);
+                }
+            }
         }
-        input {
-         padding: 8px;
-         background-color: var(--theme-color);
-         border: none;
-            border-radius: 8px;
-            font-weight: 700;
-         color: var(--text-color);
-         box-shadow: inset 0 0 3px var(--shadow-color);   
-        }
-}
-}
-}
+    }
 }
 
 #darkModeToggle {
@@ -146,18 +205,104 @@ dialog {
     font-size: 24px;
     background-color: var(--theme-color);
     color: var(--text-color);
-    box-shadow: 0 0 8px var(--shadow-color);
+    box-shadow: var(--box-shadow);
     margin-right: 16px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
     svg {
         height: 24px;
         width: 24px;
     }
+
     &:focus {
         cursor: pointer;
-        box-shadow: 0 0 12px var(--shadow-color);
+        box-shadow: var(--focus-bxsh);
     }
+
     &:active {
         transform: scale(0.8);
     }
+}
+
+.book {
+    padding: 8px;
+    width: 300px;
+    height: 200px;
+    box-shadow: var(--card-shadow);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--theme-color);
+    color: var(--text-color);
+    transition: all 0.2s ease-out;
+}
+
+.removebutton {
+    font-weight: 900;
+    border-radius: 100%;
+    border: none;
+    align-self: end;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    background-color: var(--theme-color);
+    padding: var(--x-padding);
+    color: var(--remove-color);
+    transition: all 0.3s ease-out;
+
+    &:hover {
+        color: var(--text-color);
+        background-color: var(--remove-color);
+    }
+
+    &:active {
+        box-shadow: var(--focus-bxsh);
+        transform: scale(0.9);
+    }
+}
+
+.name {
+    padding: 0;
+    margin: 8px;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.author {
+    margin: 8px;
+    padding: 0;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.pages {
+    margin: 8px;
+    padding: 0;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.status {
+    border: none;
+    padding: 12px;
+    margin: 16px;
+    width: 100px;
+    border-radius: 24px;
+    background-color: var(--theme-color);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease-out;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.status:active {
+    box-shadow: var(--focus-bxsh);
+    transform: scale(0.9);
+}
+
+.bookbuttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 }

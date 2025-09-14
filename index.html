@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <script src="./script.js" defer></script>
 </head>
+
 <body>
     <div class="header">
         <h1>Library</h1>
         <button id="newbookbutton">+</button>
-        <button id="darkModeToggle"><svg><path xmlns="http://www.w3.org/2000/svg" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"/></svg></button>
+        <button id="darkModeToggle"><svg>
+                <path xmlns="http://www.w3.org/2000/svg"
+                    d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" />
+            </svg></button>
     </div>
     <dialog class="sidebar">
         <form action="#">
             <fieldset>
-            <button type="button" id="modalclose">X</button>
-            <legend>New Book Entry</legend>
+                <button type="button" id="modalclose">X</button>
+                <legend>New Book Entry</legend>
                 <p>
-                    
-                        <label for="book_name">Book Name</label>
-                        <input type="text" id="book_name" name="book" placeholder="The Hobbit">
+
+                    <label for="book_name">Book Name</label>
+                    <input type="text" id="book_name" name="book" placeholder="The Hobbit">
                 </p>
-                    <p>
-                        
-                            <label for="author">Author</label>
-                            <input type="text" id="author" name="author" placeholder="J.R.R. Tolkien">
-                    </p>
-                
-                    <p>
-                        <label for="pages">No. of Pages</label>
-                        <input type="number" id="pages" name="pages" placeholder="400">
-                    </p>
-               
-                    <p>
-                        <label for="status">Status</label>
-                        <input type="text" id="status" name="status" placeholder="Unread">
-                    </p>
-                
-                    <button type="submit" id="addbookbutton">Add Book</button>
+                <p>
+
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" placeholder="J.R.R. Tolkien">
+                </p>
+
+                <p>
+                    <label for="pages">No. of Pages</label>
+                    <input type="number" id="pages" name="pages" placeholder="400">
+                </p>
+
+                <p>
+                    <label for="status">Status</label>
+                    <input type="text" id="status" name="status" placeholder="Unread">
+                </p>
+
+                <button type="submit" id="addbookbutton">Add Book</button>
             </fieldset>
         </form>
     </dialog>
@@ -48,4 +53,5 @@
     <link rel="stylesheet" href="./style.css">
 
 </body>
+
 </html>

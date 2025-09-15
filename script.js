@@ -115,7 +115,8 @@ function addBookToMyLib() {
             });
             nbbuttons.appendChild(bkstatus);
             container.appendChild(newbook);
-            if (card !== 'book') { container.removeChild(newbook); }
+            
+                if (card !== 'book') { container.removeChild(newbook); }
 
         });
     });

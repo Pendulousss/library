@@ -1,37 +1,33 @@
 :root {
-    --theme-color: aliceblue;
+    --theme-color: #e0e0e0;
     --shadow-color: gray;
     --text-color: black;
-    --shine-color: black;
+    --shine-color: white;
     --remove-color: rgba(244, 42, 42, 0.7);
     --positive-color: rgba(1, 120, 1, 0.984);
     --blue: rgb(12, 6, 100);
     --yellow: rgb(221, 145, 3);
     --x-padding: 8px 12px;
-    --box-shadow: -6px 6px 12px var(--shadow-color),
-        -2px 2px 4px var(--shine-color);
-    --focus-shadow: -3px 3px 6px var(--shadow-color),
-        -1px 1px 2px var(--shine-color);
-    /* --plus-shadow: 0 6px 12px var(--shadow-color), 0 2px 4px var(--shine-color); */
-    /* --plus-focus: 0 4px 6px var(--shadow-color), 0 2px 1px var(--shine-color); */
+    --bg-concave: linear-gradient(145deg, #cacaca, #f0f0f0);
+    --bg-convex: linear-gradient(145deg, #f0f0f0, #cacaca);
+    --focus-shadow: 5px 5px 10px #626262, -5px -5px 10px #ffffff;
+    --box-shadow: 10px 10px 20px var(--shadow-color), -10px -10px 20px var(--shine-color);
+    --inset-shadow: inset 2px 2px 4px #5a5a5a, inset -2px -2px 4px #ffffff;
 }
 
 [data-theme="dark"] {
-    --theme-color: #1a1a1a;
-    --shadow-color: black;
-    --shine-color: gray;
+    --theme-color: #212121;
+    --shadow-color: #161616;
+    --shine-color: #353535;
     --text-color: white;
     --remove-color: rgb(184, 0, 0);
     --positive-color: rgb(36, 119, 0);
     --blue: rgb(60, 0, 255);
     --yellow: rgb(134, 91, 13);
-    --box-shadow: -6px 6px 12px var(--shadow-color),
-        -2px 2px 4px var(--shine-color);
-    --focus-shadow: -3px 3px 6px var(--shadow-color),
-        -1px 1px 2px var(--shine-color);
-    /* --card-shadow: -6px 6px 12px var(--shadow-color), inset -2px 2px 4px 4px var(--shine-color); */
-    /* --plus-shadow: 0 8px 12px var(--shadow-color), 0 -1px 1px var(--shine-color);
-    --plus-focus: 0 4px 6px var(--shadow-color), 0 1px 1px var(--shine-color); */
+    --bg-convex: linear-gradient(145deg, #232323, #1e1e1e);
+    --bg-concave: linear-gradient(145deg, #1e1e1e, #232323);
+    --focus-shadow: 5px 5px 10px var(--shadow-color), -5px -5px 10px var(--shine-color);
+    --inset-shadow:  inset 2px 2px 4px #0d0d0d, inset -2px -2px 4px #353535;
 }
 
 body {
@@ -52,7 +48,7 @@ body {
 
 .header {
     background-color: var(--theme-color);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--focus-shadow);
     color: var(--text-color);
     font-size: large;
     margin: 0;
@@ -62,7 +58,6 @@ body {
     align-items: center;
 
     #newbookbutton {
-        border: none;
         height: 50px;
         width: 50px;
         border-radius: 100%;
@@ -75,8 +70,8 @@ body {
         cursor: pointer;
         font-size: 40px;
         color: var(--positive-color);
-        background-color: var(--theme-color);
-        transition: all 0.3s ease-out;
+        transition: all 0.3s ease-in-out;
+        background: var(--bg-convex);
 
         &:hover {
             border: none;
@@ -90,6 +85,7 @@ body {
         &:active {
             transform: scale(0.8);
             border: none;
+            background: var(--bg-concave);
         }
     }
 }
@@ -97,11 +93,17 @@ body {
 dialog {
     border-radius: 2%;
     border: none;
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--focus-shadow);
     background-color: var(--theme-color);
     color: var(--text-color);
     position: fixed;
     left: 83vw;
+
+    &:hover, ṣinput:focus {
+        box-shadow: var(--box-shadow);
+        transition: all 300ms ease-in-out;
+        transform: scale(1.01);
+    }
 
     form {
         border: none;
@@ -124,6 +126,7 @@ dialog {
             padding: 0;
 
             #addbookbutton {
+                background: var(--bg-convex);
                 width: 100px;
                 align-self: center;
                 background-color: var(--theme-color);
@@ -134,15 +137,17 @@ dialog {
                 box-shadow: var(--box-shadow);
                 font-weight: 700;
                 cursor: pointer;
+                transition: all 0.3s ease-in-out;
 
                 &:active {
+                    transform: scale(0.8);
                     box-shadow: var(--focus-shadow);
+                    background: var(--bg-concave);
                 }
             }
 
             #modalclose {
                 align-self: flex-end;
-                background-color: var(--theme-color);
                 border-radius: 100%;
                 color: var(--remove-color);
                 border: none;
@@ -154,6 +159,7 @@ dialog {
                 font-weight: 900;
                 padding: var(--x-padding);
                 margin: 0 8px;
+                background: var(--bg-convex);
 
                 &:hover {
                     background-color: var(--remove-color);
@@ -161,8 +167,10 @@ dialog {
                 }
 
                 &:active {
+                    color: var(--text-color);
                     box-shadow: var(--focus-shadow);
                     transform: scale(0.9);
+                    background: var(--bg-concave);
                 }
             }
 
@@ -179,16 +187,18 @@ dialog {
                     border: none;
                     padding: 1rem;
                     border-radius: 1rem;
-                    background: var(--theme-color);
                     box-shadow: var(--focus-shadow);
                     color: var(--text-color);
                     transition: 0.3s;
+                    font-weight: 700;
+                    font-size: 14px;
+                    background-color: var(--theme-color);
                 }
 
                 input:focus {
                     outline: none;
-                    transition: 0.3s;
-                    box-shadow: var(--box-shadow);
+                    transition: 0.5s;
+                    box-shadow:  var(--inset-shadow);
                 }
 
                 #status {
@@ -200,6 +210,7 @@ dialog {
 }
 
 #darkModeToggle {
+    background: var(--bg-convex);
     height: 50px;
     width: 50px;
     border-radius: 100%;
@@ -224,6 +235,7 @@ dialog {
     }
 
     &:active {
+        background: var(--bg-concave);
         transform: scale(0.8);
         box-shadow: var(--focus-shadow);
     }
@@ -281,6 +293,7 @@ dialog {
 
         .removebutton {
             box-shadow: var(--box-shadow);
+
         }
 
         .status {
@@ -296,10 +309,10 @@ dialog {
     align-self: end;
     box-shadow: var(--focus-shadow);
     cursor: pointer;
-    background-color: var(--theme-color);
     padding: var(--x-padding);
     color: var(--remove-color);
     transition: all 0.3s ease-in-out;
+    background: var(--bg-convex);
 
     &:hover {
         color: var(--text-color);
@@ -308,6 +321,7 @@ dialog {
 
     &:active {
         transform: scale(0.9);
+        background: var(--bg-concave);
     }
 }
 
@@ -338,17 +352,18 @@ dialog {
     margin: 16px;
     width: 100px;
     border-radius: 24px;
-    background-color: var(--theme-color);
     box-shadow: var(--focus-shadow);
     cursor: pointer;
     font-weight: 700;
     transition: all 0.3s ease-out;
     text-align: center;
     color: var(--text-color);
+    background: var(--bg-convex);
 }
 
 .status:active {
     transform: scale(0.95);
+    background: var(--bg-concave);
 }
 
 .bookbuttons {

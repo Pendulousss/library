@@ -241,41 +241,6 @@ dialog {
     }
 }
 
-.prebook0 {
-    padding: 8px;
-    width: 300px;
-    height: 200px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--theme-color);
-    color: var(--text-color)
-}
-
-.prebook033 {
-    padding: 8px;
-    width: 300px;
-    height: 200px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--theme-color);
-    color: var(--text-color);
-    box-shadow: var(--focus-shadow);
-}
-
-.prebook066 {
-    padding: 8px;
-    width: 300px;
-    height: 200px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--theme-color);
-    color: var(--text-color);
-    box-shadow: var(--box-shadow);
-}
-
 .book {
     padding: 8px;
     width: 300px;
@@ -357,7 +322,6 @@ dialog {
     font-weight: 700;
     transition: all 0.3s ease-out;
     text-align: center;
-    color: var(--text-color);
     background: var(--bg-convex);
 }
 

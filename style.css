@@ -2,7 +2,7 @@
     --theme-color: aliceblue;
     --shadow-color: gray;
     --text-color: black;
-    --shine-color: white;
+    --shine-color: black;
     --remove-color: rgba(244, 42, 42, 0.7);
     --positive-color: rgba(1, 120, 1, 0.984);
     --blue: rgb(12, 6, 100);
@@ -10,25 +10,28 @@
     --x-padding: 8px 12px;
     --box-shadow: -6px 6px 12px var(--shadow-color),
         -2px 2px 4px var(--shine-color);
-    --focus-bxsh: -3px 3px 6px var(--shadow-color),
+    --focus-shadow: -3px 3px 6px var(--shadow-color),
         -1px 1px 2px var(--shine-color);
-    --card-shadow: -6px 6px 12px var(--shadow-color), inset -2px 2px 4px 4px var(--shine-color);
-    --plus-shadow: 0 8px 12px var(--shadow-color), 0 2px 2px var(--shine-color);
-    --plus-focus: 0 4px 6px var(--shadow-color), 0 1px 1px var(--shine-color);
+    /* --plus-shadow: 0 6px 12px var(--shadow-color), 0 2px 4px var(--shine-color); */
+    /* --plus-focus: 0 4px 6px var(--shadow-color), 0 2px 1px var(--shine-color); */
 }
 
 [data-theme="dark"] {
     --theme-color: #1a1a1a;
     --shadow-color: black;
+    --shine-color: gray;
     --text-color: white;
     --remove-color: rgb(184, 0, 0);
     --positive-color: rgb(36, 119, 0);
     --blue: rgb(60, 0, 255);
     --yellow: rgb(134, 91, 13);
-   --box-shadow: -6px 6px 12px var(--shadow-color),
+    --box-shadow: -6px 6px 12px var(--shadow-color),
         -2px 2px 4px var(--shine-color);
-    --focus-bxsh: -3px 3px 6px var(--shadow-color),
+    --focus-shadow: -3px 3px 6px var(--shadow-color),
         -1px 1px 2px var(--shine-color);
+    /* --card-shadow: -6px 6px 12px var(--shadow-color), inset -2px 2px 4px 4px var(--shine-color); */
+    /* --plus-shadow: 0 8px 12px var(--shadow-color), 0 -1px 1px var(--shine-color);
+    --plus-focus: 0 4px 6px var(--shadow-color), 0 1px 1px var(--shine-color); */
 }
 
 body {
@@ -64,7 +67,7 @@ body {
         width: 50px;
         border-radius: 100%;
         margin-right: 48px;
-        box-shadow: var(--plus-shadow);
+        box-shadow: var(--box-shadow);
         position: fixed;
         border: none;
         top: 88vh;
@@ -80,7 +83,7 @@ body {
         }
 
         &:focus {
-            box-shadow: var(--plus-focus);
+            box-shadow: var(--focus-shadow);
             border: none;
         }
 
@@ -97,12 +100,14 @@ dialog {
     box-shadow: var(--box-shadow);
     background-color: var(--theme-color);
     color: var(--text-color);
+    position: fixed;
+    left: 83vw;
 
     form {
         border: none;
 
         legend {
-            text-align: center;
+            text-align: left;
             color: var(--text-color);
             font-size: x-large;
         }
@@ -115,7 +120,8 @@ dialog {
             flex-direction: column;
             justify-content: space-evenly;
             height: auto;
-            width: 300px;
+            width: 200px;
+            padding: 0;
 
             #addbookbutton {
                 width: 100px;
@@ -130,7 +136,7 @@ dialog {
                 cursor: pointer;
 
                 &:active {
-                    box-shadow: var(--focus-bxsh);
+                    box-shadow: var(--focus-shadow);
                 }
             }
 
@@ -147,6 +153,7 @@ dialog {
                 box-shadow: var(--box-shadow);
                 font-weight: 900;
                 padding: var(--x-padding);
+                margin: 0 8px;
 
                 &:hover {
                     background-color: var(--remove-color);
@@ -154,7 +161,7 @@ dialog {
                 }
 
                 &:active {
-                    box-shadow: var(--focus-bxsh);
+                    box-shadow: var(--focus-shadow);
                     transform: scale(0.9);
                 }
             }
@@ -173,7 +180,7 @@ dialog {
                     padding: 1rem;
                     border-radius: 1rem;
                     background: var(--theme-color);
-                    box-shadow: var(--focus-bxsh);
+                    box-shadow: var(--focus-shadow);
                     color: var(--text-color);
                     transition: 0.3s;
                 }
@@ -203,10 +210,9 @@ dialog {
     font-size: 24px;
     background-color: var(--theme-color);
     color: var(--text-color);
-    box-shadow: 0 0 14px var(--shadow-color),
-        0 0 6px var(--shine-color);
+    box-shadow: var(--box-shadow);
     margin-right: 16px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease;
 
     svg {
         height: 24px;
@@ -219,24 +225,67 @@ dialog {
 
     &:active {
         transform: scale(0.8);
-        box-shadow: 0 0 10px var(--shadow-color),
-            0 0 6px var(--shine-color);
+        box-shadow: var(--focus-shadow);
     }
+}
+
+.prebook0 {
+    padding: 8px;
+    width: 300px;
+    height: 200px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--theme-color);
+    color: var(--text-color)
+}
+
+.prebook033 {
+    padding: 8px;
+    width: 300px;
+    height: 200px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--theme-color);
+    color: var(--text-color);
+    box-shadow: var(--focus-shadow);
+}
+
+.prebook066 {
+    padding: 8px;
+    width: 300px;
+    height: 200px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--theme-color);
+    color: var(--text-color);
+    box-shadow: var(--box-shadow);
 }
 
 .book {
     padding: 8px;
     width: 300px;
     height: 200px;
-    box-shadow: var(--box-shadow);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     background-color: var(--theme-color);
     color: var(--text-color);
-    transition: all 0.2s ease-out;
+    box-shadow: var(--focus-shadow);
+    transition: all 300ms ease;
+
     &:hover {
-        box-shadow: var(--focus-bxsh);
+        box-shadow: var(--box-shadow);
+
+        .removebutton {
+            box-shadow: var(--box-shadow);
+        }
+
+        .status {
+            box-shadow: var(--box-shadow);
+        }
     }
 }
 
@@ -245,12 +294,12 @@ dialog {
     border-radius: 100%;
     border: none;
     align-self: end;
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--focus-shadow);
     cursor: pointer;
     background-color: var(--theme-color);
     padding: var(--x-padding);
     color: var(--remove-color);
-    transition: all 0.3s ease-out;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
         color: var(--text-color);
@@ -258,7 +307,6 @@ dialog {
     }
 
     &:active {
-        box-shadow: var(--focus-bxsh);
         transform: scale(0.9);
     }
 }
@@ -291,7 +339,7 @@ dialog {
     width: 100px;
     border-radius: 24px;
     background-color: var(--theme-color);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--focus-shadow);
     cursor: pointer;
     font-weight: 700;
     transition: all 0.3s ease-out;
@@ -300,12 +348,10 @@ dialog {
 }
 
 .status:active {
-    box-shadow: var(--focus-bxsh);
-    transform: scale(0.9);
+    transform: scale(0.95);
 }
 
 .bookbuttons {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
 }

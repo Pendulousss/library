@@ -28,8 +28,9 @@ newbookbutton.addEventListener('click', () => {
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    myLibrary.push(new Book(bookname.value, author.value, pages.value, readstatus.value));
-    addBookToMyLib();
+    const newBook = new Book(bookname.value, author.value, pages.value, readstatus.value);
+    myLibrary.push(newBook);
+    addBookToMyLib(newBook.id);
     clearform();
     sidebar.close();
 })
@@ -51,69 +52,77 @@ myLibrary.push(new Book('Three Body Problem', 'Cixin Liu', '400', 'Read'));
 myLibrary.push(new Book('Project Hail Mary', 'Andy Weir', '268', 'Read'));
 myLibrary.push(new Book('The left Hand of Darkness', 'Ursula K. LeGuin', '350', 'Reading'));
 
-function addBookToMyLib() {
-    container.innerHTML = "";
-    myLibrary.forEach(book => {
+function createBookElement(book, isNew = false) {
+    const newbook = document.createElement("div");
+    newbook.className = isNew ? 'book book-new' : 'book';
+    newbook.setAttribute('data-book-id', book.id);
 
-        const newbook = document.createElement("div");
-        newbook.className = `book`;
-        newbook.setAttribute('data-book-id', book.id);
-
-        //from here on... bk for book and nb for new book
-
-        let bkremove = document.createElement("button");
-        bkremove.className = "removebutton";
-        bkremove.type = "button";
-        bkremove.textContent = "X";
-        bkremove.addEventListener('click', () => {
-            removebook(book.id);
-        });
-        newbook.appendChild(bkremove);
-
-        let bkname = document.createElement("p");
-        bkname.className = "name";
-        bkname.textContent = `Name: ${book.name}`;
-        newbook.appendChild(bkname);
-
-        let bkauthor = document.createElement("p");
-        bkauthor.className = "author";
-        bkauthor.textContent = `Author: ${book.author}`;
-        newbook.appendChild(bkauthor)
-
-        let bkpages = document.createElement("p");
-        bkpages.className = "pages";
-        bkpages.textContent = `Page count: ${book.pages}`;
-        newbook.appendChild(bkpages)
-
-        let nbbuttons = document.createElement("div");
-        nbbuttons.className = "bookbuttons";
-        newbook.appendChild(nbbuttons);
-
-        let bkstatus = document.createElement("button");
-        bkstatus.className = "status";
-        bkstatus.textContent = book.status;
-        bkstatus.type = "button";
-        if (book.status === 'Read') { bkstatus.style.color = 'var(--positive-color)'; }
-        else if (book.status === 'Reading') { bkstatus.style.color = 'var(--blue)'; }
-        else if (book.status === 'Unread') { bkstatus.style.color = 'var(--yellow)'; }
-        bkstatus.addEventListener('click', () => {
-            if (book.status === 'Read' || bkstatus.style.backgroundColor === 'var(--positive-color)') {
-                book.status = 'Unread';
-                bkstatus.style.color = 'var(--yellow)';
-            } else if (book.status === 'Read' || book.status === 'Unread') {
-                book.status = 'Reading';
-                bkstatus.style.color = 'var(--blue)';
-            } else {
-                book.status = 'Read';
-                bkstatus.style.color = 'var(--positive-color)';
-
-
-            }
-            bkstatus.textContent = book.status;
-        });
-        nbbuttons.appendChild(bkstatus);
-        container.appendChild(newbook);
+    let bkremove = document.createElement("button");
+    bkremove.className = "removebutton";
+    bkremove.type = "button";
+    bkremove.textContent = "X";
+    bkremove.addEventListener('click', () => {
+        removebook(book.id);
     });
+    newbook.appendChild(bkremove);
+
+    let bkname = document.createElement("p");
+    bkname.className = "name";
+    bkname.textContent = `Name: ${book.name}`;
+    newbook.appendChild(bkname);
+
+    let bkauthor = document.createElement("p");
+    bkauthor.className = "author";
+    bkauthor.textContent = `Author: ${book.author}`;
+    newbook.appendChild(bkauthor);
+
+    let bkpages = document.createElement("p");
+    bkpages.className = "pages";
+    bkpages.textContent = `Page count: ${book.pages}`;
+    newbook.appendChild(bkpages);
+
+    let nbbuttons = document.createElement("div");
+    nbbuttons.className = "bookbuttons";
+    newbook.appendChild(nbbuttons);
+
+    let bkstatus = document.createElement("button");
+    bkstatus.className = "status";
+    bkstatus.textContent = book.status;
+    bkstatus.type = "button";
+    if (book.status === 'Read') { bkstatus.style.color = 'var(--positive-color)'; }
+    else if (book.status === 'Reading') { bkstatus.style.color = 'var(--blue)'; }
+    else if (book.status === 'Unread') { bkstatus.style.color = 'var(--yellow)'; }
+    bkstatus.addEventListener('click', () => {
+        if (book.status === 'Read' || bkstatus.style.backgroundColor === 'var(--positive-color)') {
+            book.status = 'Unread';
+            bkstatus.style.color = 'var(--yellow)';
+        } else if (book.status === 'Read' || book.status === 'Unread') {
+            book.status = 'Reading';
+            bkstatus.style.color = 'var(--blue)';
+        } else {
+            book.status = 'Read';
+            bkstatus.style.color = 'var(--positive-color)';
+        }
+        bkstatus.textContent = book.status;
+    });
+    nbbuttons.appendChild(bkstatus);
+    return newbook;
+}
+
+function addBookToMyLib(newBookId = null) {
+    if (newBookId) {
+        // Only add the new book
+        const newBook = myLibrary[myLibrary.length - 1];
+        const bookElement = createBookElement(newBook, true);
+        container.appendChild(bookElement);
+    } else {
+        // Initial load - add all books without animation
+        container.innerHTML = "";
+        myLibrary.forEach(book => {
+            const bookElement = createBookElement(book, false);
+            container.appendChild(bookElement);
+        });
+    }
 };
 
 
@@ -129,8 +138,14 @@ function clearform() {
 function removebook(bookId) {
     const bookIndex = myLibrary.findIndex(book => book.id === bookId);
     if (bookIndex !== -1) {
-        myLibrary.splice(bookIndex, 1);
-        addBookToMyLib();
+        const bookElement = document.querySelector(`[data-book-id="${bookId}"]`);
+        if (bookElement) {
+            bookElement.classList.add('book-remove');
+            bookElement.addEventListener('animationend', () => {
+                myLibrary.splice(bookIndex, 1);
+                bookElement.remove();
+            });
+        }
     }
 }
 

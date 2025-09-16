@@ -1,3 +1,56 @@
+@keyframes addBook {
+    0% {
+        box-shadow: none;
+    }
+    60% {
+        box-shadow: var(--box-shadow);
+        background: var(--bg-convex);
+    }
+    80% {
+        box-shadow: var(--focus-shadow);
+    }
+    100% {
+        box-shadow: var(--focus-shadow);
+    }
+}
+
+@keyframes removeBook {
+    0% {
+        box-shadow: var(--focus-shadow);
+        background: var(--bg-concave);
+    }
+    20% {
+        box-shadow: 3px 3px 6px #626262, -3px -3px 6px #ffffff;
+    }
+    40% {
+        box-shadow: 1px 1px 3px #626262, -1px -1px 3px #ffffff;;
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+.book {
+            padding: 8px;
+            width: 300px;
+            height: 200px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-convex);
+            color: var(--text-color);
+            box-shadow: var(--focus-shadow);
+            transition: all 300ms ease;
+        }
+
+        .book.book-new {
+            animation: addBook 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .book.book-remove {
+            animation: removeBook 0.3s ease forwards;
+        }
+
 :root {
     --theme-color: #e0e0e0;
     --shadow-color: gray;
@@ -27,7 +80,7 @@
     --bg-convex: linear-gradient(145deg, #232323, #1e1e1e);
     --bg-concave: linear-gradient(145deg, #1e1e1e, #232323);
     --focus-shadow: 5px 5px 10px var(--shadow-color), -5px -5px 10px var(--shine-color);
-    --inset-shadow:  inset 2px 2px 4px #0d0d0d, inset -2px -2px 4px #353535;
+    --inset-shadow: inset 2px 2px 4px #0d0d0d, inset -2px -2px 4px #353535;
 }
 
 body {
@@ -83,7 +136,7 @@ body {
         }
 
         &:active {
-            transform: scale(0.8);
+            transform: scale(0.9);
             border: none;
             background: var(--bg-concave);
         }
@@ -99,7 +152,8 @@ dialog {
     position: fixed;
     left: 83vw;
 
-    &:hover, ṣinput:focus {
+    &:hover,
+    ṣinput:focus {
         box-shadow: var(--box-shadow);
         transition: all 300ms ease-in-out;
         transform: scale(1.01);
@@ -140,7 +194,7 @@ dialog {
                 transition: all 0.3s ease-in-out;
 
                 &:active {
-                    transform: scale(0.8);
+                    transform: scale(0.9);
                     box-shadow: var(--focus-shadow);
                     background: var(--bg-concave);
                 }
@@ -198,7 +252,7 @@ dialog {
                 input:focus {
                     outline: none;
                     transition: 0.5s;
-                    box-shadow:  var(--inset-shadow);
+                    box-shadow: var(--inset-shadow);
                 }
 
                 #status {
@@ -236,7 +290,7 @@ dialog {
 
     &:active {
         background: var(--bg-concave);
-        transform: scale(0.8);
+        transform: scale(0.9);
         box-shadow: var(--focus-shadow);
     }
 }
@@ -252,6 +306,7 @@ dialog {
     color: var(--text-color);
     box-shadow: var(--focus-shadow);
     transition: all 300ms ease;
+    animation: addBook 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     &:hover {
         box-shadow: var(--box-shadow);
@@ -309,6 +364,18 @@ dialog {
     padding: 0;
     color: var(--text-color);
     font-weight: 700;
+}
+
+.status[data-status="Read"] {
+    color: var(--positive-color);
+}
+
+.status[data-status="Reading"] {
+    color: var(--blue);
+}
+
+.status[data-status="Unread"] {
+    color: var(--yellow);
 }
 
 .status {

@@ -23,6 +23,7 @@
         background: var(--bg-convex);
     }
     80% {
+        background: var(--bg-convex);
         box-shadow: var(--focus-shadow);
     }
     100% {
@@ -32,16 +33,23 @@
 
 @keyframes removeBook {
     0% {
+        opacity: 1;
         box-shadow: var(--focus-shadow);
-        background: var(--bg-concave);
+    }
+    40% {
+        box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--shine-color);
+        opacity: 0.8;
     }
     60% {
-        box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--shine-color);
-    }
-    80% {
+        opacity: 0.6;
         box-shadow: 1px 1px 3px var(--shadow-color), -1px -1px 3px var(--shine-color);
     }
+    80% {
+        opacity: 0.3;
+        box-shadow: none;
+    }
     100% {
+        opacity: 0.1;
         box-shadow: none;
     }
 }
@@ -191,14 +199,14 @@ dialog {
     color: var(--text-color);
     position: fixed;
     left: 83vw;
-    animation: var(--loadElement) 0.2s;
+    animation: var(--loadElement);
 
     &.closing {
         animation: closeDialog 0.3s ease-out forwards;
     }
 
     &:hover,
-    ṣinput:focus {
+    input:focus {
         box-shadow: var(--box-shadow);
         transition: all 300ms ease-in-out;
         transform: scale(1.01);
@@ -237,7 +245,8 @@ dialog {
                 font-weight: 700;
                 cursor: pointer;
                 transition: all 0.3s ease-in-out;
-                animation: var(--loadElement) 0.3s;                &:active {
+                animation: var(--loadElement);                
+                &:active {
                     transform: scale(0.9);
                     box-shadow: var(--focus-shadow);
                     background: var(--bg-concave);
@@ -258,7 +267,8 @@ dialog {
                 padding: var(--x-padding);
                 margin: 0 8px;
                 background: var(--bg-convex);
-                animation: var(--loadElement) 0.2s;                &:hover {
+                animation: var(--loadElement);                
+                &:hover {
                     background-color: var(--remove-color);
                     color: var(--text-color);
                 }
@@ -290,12 +300,12 @@ dialog {
                     font-weight: 700;
                     font-size: 14px;
                     background-color: var(--theme-color);
-                    animation: var(--loadElement) 0.4s;
+                    animation: var(--loadElement);
                 }
 
                 input:focus {
                     outline: none;
-                    transition: 0.5s;
+                    transition: 0.3s;
                     box-shadow: var(--inset-shadow);
                 }
 

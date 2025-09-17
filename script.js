@@ -39,12 +39,6 @@ form.addEventListener("submit", (e) => {
     myLibrary.push(newBook);
     addBookToMyLib(newBook.id);
     clearform();
-    // Also apply animation when closing via form submission
-    sidebar.classList.add('closing');
-    sidebar.addEventListener('animationend', () => {
-        sidebar.classList.remove('closing');
-        sidebar.close();
-    }, { once: true });
 })
 
 class Book {

@@ -10,7 +10,14 @@ const container = document.querySelector("#container");
 const form = document.querySelector("form");
 const myLibrary = [];
 
-closedialog.addEventListener('click', () => { sidebar.close(); });
+// Fixed close dialog with animation
+closedialog.addEventListener('click', () => { 
+    sidebar.classList.add('closing');
+    sidebar.addEventListener('animationend', () => {
+        sidebar.classList.remove('closing');
+        sidebar.close();
+    }, { once: true });
+});
 
 darkModeToggle.addEventListener('click', () => {
     if (document.documentElement.getAttribute('data-theme') === 'dark') {
@@ -32,10 +39,13 @@ form.addEventListener("submit", (e) => {
     myLibrary.push(newBook);
     addBookToMyLib(newBook.id);
     clearform();
-    sidebar.close();
+    // Also apply animation when closing via form submission
+    sidebar.classList.add('closing');
+    sidebar.addEventListener('animationend', () => {
+        sidebar.classList.remove('closing');
+        sidebar.close();
+    }, { once: true });
 })
-
-
 
 class Book {
     constructor(name, author, pages, status) {
@@ -125,15 +135,12 @@ function addBookToMyLib(newBookId = null) {
     }
 };
 
-
 function clearform() {
     bookname.value = '';
     author.value = '';
     pages.value = '';
     readstatus.value = 'unread';
 }
-
-
 
 function removebook(bookId) {
     const bookIndex = myLibrary.findIndex(book => book.id === bookId);

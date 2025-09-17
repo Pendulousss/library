@@ -1,3 +1,19 @@
+@keyframes loadElement {
+    0% {
+        box-shadow: none;
+    }
+    60% {
+        box-shadow: 1px 1px 3px var(--shadow-color), -1px -1px 3px var(--shine-color);
+
+    }
+    80% {
+        box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--shine-color);
+    }
+    100% {
+        box-shadow: var(--focus-shadow);
+    }
+}
+
 @keyframes addBook {
     0% {
         box-shadow: none;
@@ -19,13 +35,32 @@
         box-shadow: var(--focus-shadow);
         background: var(--bg-concave);
     }
-    20% {
-        box-shadow: 3px 3px 6px #626262, -3px -3px 6px #ffffff;
+    60% {
+        box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--shine-color);
     }
-    40% {
-        box-shadow: 1px 1px 3px #626262, -1px -1px 3px #ffffff;;
+    80% {
+        box-shadow: 1px 1px 3px var(--shadow-color), -1px -1px 3px var(--shine-color);
     }
     100% {
+        box-shadow: none;
+    }
+}
+
+@keyframes closeDialog {
+    0% {
+        opacity: 1;
+        box-shadow: var(--focus-shadow);
+    }
+    60% {
+        opacity: 0.6;
+        box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--shine-color);
+    }
+    80% {
+        opacity: 0.3;
+        box-shadow: 1px 1px 3px var(--shadow-color), -1px -1px 3px var(--shine-color);
+    }
+    100% {
+        opacity: 0;
         box-shadow: none;
     }
 }
@@ -63,9 +98,10 @@
     --x-padding: 8px 12px;
     --bg-concave: linear-gradient(145deg, #cacaca, #f0f0f0);
     --bg-convex: linear-gradient(145deg, #f0f0f0, #cacaca);
-    --focus-shadow: 5px 5px 10px #626262, -5px -5px 10px #ffffff;
+    --focus-shadow: 5px 5px 10px var(--shadow-color), -5px -5px 10px var(--shine-color);
     --box-shadow: 10px 10px 20px var(--shadow-color), -10px -10px 20px var(--shine-color);
-    --inset-shadow: inset 2px 2px 4px #5a5a5a, inset -2px -2px 4px #ffffff;
+    --inset-shadow: inset 2px 2px 4px #5a5a5a, inset -2px -2px 4px var(--shine-color);
+    --loadElement: loadElement 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 [data-theme="dark"] {
@@ -80,7 +116,9 @@
     --bg-convex: linear-gradient(145deg, #232323, #1e1e1e);
     --bg-concave: linear-gradient(145deg, #1e1e1e, #232323);
     --focus-shadow: 5px 5px 10px var(--shadow-color), -5px -5px 10px var(--shine-color);
+    --box-shadow: 10px 10px 20px var(--shadow-color), -10px -10px 20px var(--shine-color);
     --inset-shadow: inset 2px 2px 4px #0d0d0d, inset -2px -2px 4px #353535;
+    --loadElement: loadElement 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 body {
@@ -109,6 +147,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: var(--loadElement);
 
     #newbookbutton {
         height: 50px;
@@ -117,6 +156,7 @@ body {
         margin-right: 48px;
         box-shadow: var(--box-shadow);
         position: fixed;
+        animation:  var(--loadElement);
         border: none;
         top: 88vh;
         left: 94vw;
@@ -151,6 +191,11 @@ dialog {
     color: var(--text-color);
     position: fixed;
     left: 83vw;
+    animation: var(--loadElement) 0.2s;
+
+    &.closing {
+        animation: closeDialog 0.3s ease-out forwards;
+    }
 
     &:hover,
     ṣinput:focus {
@@ -179,7 +224,7 @@ dialog {
             width: 200px;
             padding: 0;
 
-            #addbookbutton {
+                #addbookbutton {
                 background: var(--bg-convex);
                 width: 100px;
                 align-self: center;
@@ -192,15 +237,14 @@ dialog {
                 font-weight: 700;
                 cursor: pointer;
                 transition: all 0.3s ease-in-out;
-
-                &:active {
+                animation: var(--loadElement) 0.3s;                &:active {
                     transform: scale(0.9);
                     box-shadow: var(--focus-shadow);
                     background: var(--bg-concave);
                 }
             }
 
-            #modalclose {
+                #modalclose {
                 align-self: flex-end;
                 border-radius: 100%;
                 color: var(--remove-color);
@@ -214,8 +258,7 @@ dialog {
                 padding: var(--x-padding);
                 margin: 0 8px;
                 background: var(--bg-convex);
-
-                &:hover {
+                animation: var(--loadElement) 0.2s;                &:hover {
                     background-color: var(--remove-color);
                     color: var(--text-color);
                 }
@@ -247,6 +290,7 @@ dialog {
                     font-weight: 700;
                     font-size: 14px;
                     background-color: var(--theme-color);
+                    animation: var(--loadElement) 0.4s;
                 }
 
                 input:focus {
@@ -271,6 +315,7 @@ dialog {
     position: relative;
     left: 43vw;
     border: none;
+    animation: var(--loadElement);
     cursor: pointer;
     font-size: 24px;
     background-color: var(--theme-color);
@@ -306,7 +351,7 @@ dialog {
     color: var(--text-color);
     box-shadow: var(--focus-shadow);
     transition: all 300ms ease;
-    animation: addBook 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: var(--loadElement);
 
     &:hover {
         box-shadow: var(--box-shadow);
@@ -333,6 +378,7 @@ dialog {
     color: var(--remove-color);
     transition: all 0.3s ease-in-out;
     background: var(--bg-convex);
+    animation: var(--loadElement) 0.3s;
 
     &:hover {
         color: var(--text-color);
@@ -390,6 +436,7 @@ dialog {
     transition: all 0.3s ease-out;
     text-align: center;
     background: var(--bg-convex);
+    animation: var(--loadElement) 0.3s;
 }
 
 .status:active {

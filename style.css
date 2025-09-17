@@ -176,11 +176,11 @@ body {
         border-radius: 100%;
         margin-right: 48px;
         box-shadow: var(--box-shadow);
-        position: fixed;
+        position: relative;
         animation: var(--loadElement);
         border: none;
         top: 88vh;
-        left: 94vw;
+        left: 42vw;
         cursor: pointer;
         font-size: 40px;
         color: var(--positive-color);
@@ -302,6 +302,7 @@ dialog {
 
                 label {
                     font-size: large;
+                    font-weight: 900;
                 }
 
                 input {
@@ -311,7 +312,7 @@ dialog {
                     box-shadow: var(--focus-shadow);
                     color: var(--text-color);
                     transition: 0.3s;
-                    font-weight: 900;
+                    font-weight: 800;
                     font-size: 14px;
                     background-color: var(--theme-color);
                     /* animation: var(--loadElement); */
@@ -337,7 +338,7 @@ dialog {
     width: 50px;
     border-radius: 100%;
     position: relative;
-    left: 43vw;
+    left: 40vw;
     border: none;
     animation: var(--loadElement);
     cursor: pointer;

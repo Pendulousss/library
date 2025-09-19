@@ -96,6 +96,7 @@ function createBookElement(book, isNew = false) {
     if (book.status === 'Read') { bkstatus.style.color = 'var(--positive-color)'; }
     else if (book.status === 'Reading') { bkstatus.style.color = 'var(--blue)'; }
     else if (book.status === 'Unread') { bkstatus.style.color = 'var(--yellow)'; }
+    else { bkstatus.style.color = 'var(--text-color)'; }
     bkstatus.addEventListener('click', () => {
         if (book.status === 'Read' || bkstatus.style.backgroundColor === 'var(--positive-color)') {
             book.status = 'Unread';
@@ -148,6 +149,22 @@ function removebook(bookId) {
             });
         }
     }
+}
+
+function openDialog() {
+    const dialog = document.querySelector('dialog');
+    dialog.classList.remove('closing'); // Remove any closing class
+    dialog.showModal();
+}
+
+function closeDialog() {
+    const dialog = document.querySelector('dialog');
+    dialog.classList.add('closing');
+    
+    setTimeout(() => {
+        dialog.close();
+        dialog.classList.remove('closing');
+    }, 300);
 }
 
 addBookToMyLib();

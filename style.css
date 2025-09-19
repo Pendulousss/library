@@ -3,12 +3,12 @@
         box-shadow: none;
     }
 
-    60% {
+    33% {
         box-shadow: 1px 1px 3px var(--shadow-color), -1px -1px 3px var(--shine-color);
 
     }
 
-    80% {
+    66% {
         box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--shine-color);
     }
 
@@ -22,12 +22,12 @@
         box-shadow: none;
     }
 
-    60% {
+    33% {
         box-shadow: var(--box-shadow);
         background: var(--bg-convex);
     }
 
-    80% {
+    66% {
         background: var(--bg-convex);
         box-shadow: var(--focus-shadow);
     }
@@ -43,17 +43,17 @@
         box-shadow: var(--focus-shadow);
     }
 
-    40% {
+    25% {
         box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--shine-color);
         opacity: 0.8;
     }
 
-    60% {
+    50% {
         opacity: 0.6;
         box-shadow: 1px 1px 3px var(--shadow-color), -1px -1px 3px var(--shine-color);
     }
 
-    80% {
+    75% {
         opacity: 0.3;
         box-shadow: none;
     }
@@ -66,23 +66,55 @@
 
 @keyframes closeDialog {
     0% {
-        opacity: 1;
-        box-shadow: var(--focus-shadow);
+        left: 88vw;
+        box-shadow: 12px 12px 24px var(--shadow-color), -2px -2px 6px var(--shine-color);
     }
 
-    60% {
-        opacity: 0.6;
-        box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--shine-color);
+    25% {
+        left: 91vw;
+        box-shadow: 9px 9px 18px var(--shadow-color), -2px -2px 5px var(--shine-color);
     }
 
-    80% {
-        opacity: 0.3;
-        box-shadow: 1px 1px 3px var(--shadow-color), -1px -1px 3px var(--shine-color);
+    50% {
+        left: 94vw;
+        box-shadow: 6px 6px 12px var(--shadow-color), -1px -1px 3px var(--shine-color);
+    }
+
+    75% {
+        left: 97vw;
+        box-shadow: 3px 3px 6px var(--shadow-color), -1px -1px 2px var(--shine-color);
     }
 
     100% {
-        opacity: 0;
+        left: 100vw;
         box-shadow: none;
+    }
+}
+
+@keyframes openDialog {
+    0% {
+        left: 100vw;
+        box-shadow: none;
+    }
+
+    25% {
+        left: 95vw;
+        box-shadow: 3px 3px 6px var(--shadow-color), -1px -1px 2px var(--shine-color);
+    }
+
+    50% {
+        left: 90vw;
+        box-shadow: 6px 6px 12px var(--shadow-color), -1px -1px 3px var(--shine-color);
+    }
+
+    75% {
+        left: 86vw;
+        box-shadow: 9px 9px 18px var(--shadow-color), -2px -2px 5px var(--shine-color);
+    }
+
+    100% {
+        left: 83vw;
+        box-shadow: 12px 12px 24px var(--shadow-color), -2px -2px 6px var(--shine-color);
     }
 }
 
@@ -176,11 +208,11 @@ body {
         border-radius: 100%;
         margin-right: 48px;
         box-shadow: var(--box-shadow);
-        position: relative;
+        position: fixed;
         animation: var(--loadElement);
         border: none;
         top: 88vh;
-        left: 42vw;
+        left: 94vw;
         cursor: pointer;
         font-size: 40px;
         color: var(--positive-color);
@@ -207,24 +239,26 @@ body {
 dialog {
     border-radius: 2%;
     border: none;
-    box-shadow: var(--box-shadow);
+    /* box-shadow: var(--box-shadow); */
+    box-shadow: 12px 12px 24px var(--shadow-color), -2px -2px 6px var(--shine-color);
     background-color: var(--theme-color);
     color: var(--text-color);
     position: fixed;
     left: 83vw;
-    animation: var(--loadElement);
+    animation: openDialog 0.3s ease-out forwards;
 
     &.closing {
         animation: closeDialog 0.3s ease-out forwards;
     }
 
-    &:hover {
+    /* &:hover {
         box-shadow: var(--box-shadow);
         transition: all 300ms ease-in-out;
-        transform: scale(1.01);
-    }
+        transform: scale(1.02);
+    } */
 
     form {
+            background: transparent;
         border: none;
 
         legend {
@@ -321,7 +355,7 @@ dialog {
                 input:focus {
                     outline: none;
                     box-shadow: var(--inset-shadow);
-                    /* transform: scale(1.02); */
+                    transform: scale(1.01);
                 }
 
                 #status {
@@ -338,7 +372,7 @@ dialog {
     width: 50px;
     border-radius: 100%;
     position: relative;
-    left: 40vw;
+    left: 43vw;
     border: none;
     animation: var(--loadElement);
     cursor: pointer;
@@ -472,4 +506,13 @@ dialog {
 .bookbuttons {
     display: flex;
     justify-content: flex-end;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0);
+
 }
